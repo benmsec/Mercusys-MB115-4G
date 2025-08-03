@@ -24,20 +24,23 @@ The router consists of the following components:
 
 # Mercusys MB115-4G
 ## Brand new product
-Body of router:<br/>
+The router itself:<br/>
 <img width="666" height="636" alt="Image" src="https://github.com/user-attachments/assets/947c8402-2443-4f2b-97de-15f3d9165906" /><br/><br/>
 <img width="699" height="534" alt="Image" src="https://github.com/user-attachments/assets/df91d64f-73dd-4f33-8152-61b5bd4c7fb0" /><br/><br/>
 <img width="694" height="881" alt="Image" src="https://github.com/user-attachments/assets/df011122-16f3-461e-b2ba-dcc6ae234405" /><br/><br/>
-Router powered on.<br/><br/>
+Router is powered on in the image below:<br/>
 <img width="701" height="872" alt="Image" src="https://github.com/user-attachments/assets/9479689f-05f8-4e1f-9d22-98d7235e9f57" /><br/>
 
-<br/>Attempt at connecting to the router using iPhone 12 Pro Max:<br/><br/>
+Attempt at connecting to the router using iPhone 12 Pro Max:<br/>
 <img width="426" height="655" alt="Image" src="https://github.com/user-attachments/assets/f56ab3ee-ae1f-41ad-bd5d-3b9c3c1426e8" /><br/>
 
 ## Service enumeration
+To connect to the router, an RJ45 (ethernet) cable was employed. Running a simple ```ifconfig``` will show the IP address that the hsot device has received from the DHCP client running on the router. Easy enough to figure out what the router IP address is ```192.168.1.1```. NetDiscover / Nmap could also be used to identify any other machines on the same network.<br/>
+<img width="644" height="329" alt="Image" src="https://github.com/user-attachments/assets/7788cd39-c6fd-4d14-bcda-d15dedefe35e" /><br/><br/>
+
 An Nmap scan was conudcted to identify what services are running on the router.<br/>
 ``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```<br/>
-<img width="644" height="329" alt="Image" src="https://github.com/user-attachments/assets/7788cd39-c6fd-4d14-bcda-d15dedefe35e" /><br/>
+
 As identified in the scan, several ports are open on the router, including:<br/>
 1. Port 23 - Telnet
 2. Port 80 - Router running a web server
