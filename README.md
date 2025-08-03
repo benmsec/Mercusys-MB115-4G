@@ -35,9 +35,15 @@ Router powered on.<br/><br/>
 <img width="426" height="655" alt="Image" src="https://github.com/user-attachments/assets/f56ab3ee-ae1f-41ad-bd5d-3b9c3c1426e8" /><br/>
 
 ## Service enumeration
-
-``` nmap -A -p- 192.168.1.1 -vv -oX <filename.txt> ```
-<Insert image>
+An Nmap scan was conudcted to identify what services are running on the router.<br/>
+``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```
+<img width="644" height="329" alt="Image" src="https://github.com/user-attachments/assets/7788cd39-c6fd-4d14-bcda-d15dedefe35e" /><br/>
+As identified in the scan, several ports are open on the router, including:<br/>
+1. Port 23 - Telnet
+2. Port 80 - Router running a web server
+3. Port 1900 - Portable SDK for uPnP devices
+4. Port 7547 - TP-Link remote access?
+5. Port 20001 - Dropbear sshd
 
 Port 80 - Web GUI:
 <img width="1919" height="1042" alt="Image" src="https://github.com/user-attachments/assets/583c29ee-c7fb-4f22-8a1e-927aab893d5c" />
@@ -72,8 +78,7 @@ Once identified, hashcat was utilised to crack the passwod, using the common wor
 <img width="1055" height="660" alt="Image" src="https://github.com/user-attachments/assets/1bfbf5bd-ec19-4024-b38b-0fdf11684a3e" />
 
 The hash was cracked and the credentials are
-``` admin ```<br/>
-``` 1234 ```
+``` admin ```:``` 1234 ```
 
 This seems to be a common default credential set from TP-Link (references to TP-Link on product box and internal directories.
 
