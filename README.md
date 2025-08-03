@@ -45,8 +45,20 @@ As identified in the scan, several ports are open on the router, including:<br/>
 4. Port 7547 - TP-Link remote access?
 5. Port 20001 - Dropbear sshd
 
-Port 80 - Web GUI:
-<img width="1919" height="1042" alt="Image" src="https://github.com/user-attachments/assets/583c29ee-c7fb-4f22-8a1e-927aab893d5c" />
+Port 80 - Web GUI:<br/>
+A web server is running on the router, asking to create a password for the web console. For investigatory purposes, a super-secure password was used - Password123!<br/>
+<img width="1919" height="1042" alt="Image" src="https://github.com/user-attachments/assets/583c29ee-c7fb-4f22-8a1e-927aab893d5c" /><br/>
+
+Port 20001 - Dropbear SSH
+When trying to SSH to the router, the following error is presented:<br/>
+<img width="902" height="68" alt="Image" src="https://github.com/user-attachments/assets/4ff016ee-63b6-4f8e-8530-3638b3fe36bf" /><br/>
+This conveys that the SSH that the router is offering is using older algorithms (ssh-rsa and ssh-dss). For security purposes, the later SSH clients refusre older algorithms by default. This is also a pretty common adversary technique called downgrade attack.<br/>
+To overcome this, specify the following:<br/>
+```ssh -p 20001 -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa admin@192.168.1.1``` or ssh-dss.<br/>
+Regardless, this didn't work, with the right password (the password is the one that was created when accessing the admin portal on Port 80):<br/>
+<img width="794" height="126" alt="Image" src="https://github.com/user-attachments/assets/8a2f3154-4965-40f6-a991-6472331182a3" /><br/>
+
+Although there are likely security risks that can be taken advantage of on this router, the main focus of this document is to try to get a shell from UART, or potentially dumping the firmware from the router itself.
 
 ## Identifying firmware from vendor's website (easiest route)
 
