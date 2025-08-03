@@ -28,10 +28,10 @@ The router itself:<br/>
 <img width="666" height="636" alt="Image" src="https://github.com/user-attachments/assets/947c8402-2443-4f2b-97de-15f3d9165906" /><br/><br/>
 <img width="699" height="534" alt="Image" src="https://github.com/user-attachments/assets/df91d64f-73dd-4f33-8152-61b5bd4c7fb0" /><br/><br/>
 <img width="694" height="881" alt="Image" src="https://github.com/user-attachments/assets/df011122-16f3-461e-b2ba-dcc6ae234405" /><br/><br/>
-Router is powered on in the image below:<br/>
+Router is powered on in the image below:<br/><br/>
 <img width="701" height="872" alt="Image" src="https://github.com/user-attachments/assets/9479689f-05f8-4e1f-9d22-98d7235e9f57" /><br/>
 
-Attempt at connecting to the router using iPhone 12 Pro Max:<br/>
+Attempt at connecting to the router using iPhone 12 Pro Max:<br/><br/>
 <img width="426" height="655" alt="Image" src="https://github.com/user-attachments/assets/f56ab3ee-ae1f-41ad-bd5d-3b9c3c1426e8" /><br/>
 
 ## Service enumeration
@@ -50,19 +50,19 @@ As identified in the scan, several ports are open on the router, including:<br/>
 5. Port 20001 - Dropbear sshd<br/>
 
 Port 23 - Telnet<br/>
-From the Nmap scan, Busybox was detected as being used on the Telnet service port, specifically a custom built 'TP-LINK router telnetd'.<br/>
+From the Nmap scan, Busybox was detected as being used on the Telnet service port, specifically a custom built 'TP-LINK router telnetd'.<br/><br/>
 <img width="345" height="165" alt="Image" src="https://github.com/user-attachments/assets/488543e4-91bb-49b4-9937-b7d7cbaad7d0" /><br/><br/>
-When trying to authenticate using 'Password123!', we receive an extremely limited Telnet connection to the router. This can be investigated further.<br/>
+When trying to authenticate using 'Password123!', we receive an extremely limited Telnet connection to the router. This can be investigated further.<br/><br/>
 <img width="518" height="389" alt="Image" src="https://github.com/user-attachments/assets/7555f55c-8454-4f5b-b0f0-45dd867bba5c" /><br/><br/>
 
 
 Port 80 - Web GUI:<br/>
-A web server is running on the router, asking to create a password for the web console. For investigatory purposes, a super-secure password was used - Password123!<br/>
+A web server is running on the router, asking to create a password for the web console. For investigatory purposes, a super-secure password was used - Password123!<br/><br/>
 <img width="1919" height="1042" alt="Image" src="https://github.com/user-attachments/assets/583c29ee-c7fb-4f22-8a1e-927aab893d5c" /><br/><br/>
 
 Port 20001 - Dropbear SSH
-When trying to SSH to the router, the following error is presented:<br/>
-<img width="902" height="68" alt="Image" src="https://github.com/user-attachments/assets/4ff016ee-63b6-4f8e-8530-3638b3fe36bf" /><br/>
+When trying to SSH to the router, the following error is presented:<br/><br/>
+<img width="902" height="68" alt="Image" src="https://github.com/user-attachments/assets/4ff016ee-63b6-4f8e-8530-3638b3fe36bf" /><br/><br/>
 This conveys that the SSH that the router is offering is using older algorithms (ssh-rsa and ssh-dss). For security purposes, the later SSH clients refusre older algorithms by default. This is also a pretty common adversary technique called downgrade attack.<br/>
 To overcome this, specify the following:<br/>
 ```ssh -p 20001 -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa admin@192.168.1.1``` or ssh-dss.<br/>
