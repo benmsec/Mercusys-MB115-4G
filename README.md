@@ -107,10 +107,10 @@ The hash was cracked and the credentials are
 This seems to be a common default credential set from TP-Link (references to TP-Link on product box and internal directories.
 
 ## Disassembling the router
-The two screws on the back hold the top part of the enclosure (black piece) on.
+The two screws on the back hold the top part of the enclosure (black piece) on.<br/>
 <img width="698" height="869" alt="Image" src="https://github.com/user-attachments/assets/4aae7b85-8b19-4192-a80e-ef56bff0dce0" /><br/>
 
-A card was used to open the body of the router, revealing the internals of the router.
+A card was used to open the body of the router, revealing the internals of the router.<br/>
 <img width="1230" height="917" alt="Image" src="https://github.com/user-attachments/assets/84fb7ff4-f1bc-4b20-8f5d-f0715e2b10d9" /><br/>
 
 ## Identifying the UART connectors
