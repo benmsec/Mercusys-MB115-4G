@@ -69,7 +69,7 @@ To overcome this, specify the following:<br/>
 Regardless, this didn't work, with the right password (the password is the one that was created when accessing the admin portal on Port 80):<br/>
 <img width="794" height="126" alt="Image" src="https://github.com/user-attachments/assets/8a2f3154-4965-40f6-a991-6472331182a3" /><br/>
 
-Although there are likely security risks that can be taken advantage of on this router, the main focus of this document is to try to get a shell from UART, or potentially dumping the firmware from the router itself.
+Although there are likely security concerns that can be taken advantage of on this router, the main focus of this project is to try to get a shell from UART, or potentially dumping the firmware from the router itself.
 
 ## Identifying firmware from vendor's website (easiest route)
 
