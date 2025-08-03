@@ -127,11 +127,11 @@ Full duplex UART needs a minimum of 3 contacts, TX, RX, and GND.<br/>
 
 If anyone follows this as a guide, don't make the rookie mistake that I did and connect RX to RX and TX to TX as you won't receive an output. The connections are inverted when connecting to the UART controller.
 
-<img width="1219" height="911" alt="Image" src="https://github.com/user-attachments/assets/41362e61-3f7b-4052-82d9-74df6f239480" /><br/><br/>
+<img width="1219" height="911" alt="Image" src="https://github.com/user-attachments/assets/41362e61-3f7b-4052-82d9-74df6f239480" /><br/>
 
 ## Soldering to UART
-As you can see, definitely not an expert in soldering. Managed to solder the pins and they were _relatively_ robust <br/>
-<img width="689" height="909" alt="Image" src="https://github.com/user-attachments/assets/852054c4-0734-406e-8fd4-c44268d0bd83" /><br/><br/>
+As you can see, definitely not an expert in soldering. Managed to solder the pins and they were _relatively_ robust.<br/>
+<img width="689" height="909" alt="Image" src="https://github.com/user-attachments/assets/852054c4-0734-406e-8fd4-c44268d0bd83" /><br/>
 
 ## Reading the data
 In comes Minicom (https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) which is a serial communication tool. You could also use screen.<br/>
@@ -155,12 +155,14 @@ Enter in the credentials that were discovered previously. This grants root acces
 <img width="692" height="533" alt="Image" src="https://github.com/user-attachments/assets/059afcf9-4710-4058-b479-4d092f682f76" /><br/>
 Note: 'SIM Response Error!' is present as there is no SIM card inserted into the router.<br/>
 
-## Troubleshooting issues
-As this was my first time doing a reverse engineering project, some rookie mistakes were made:</br>
+## Troubleshooting, issues, and learning outcomes
+As this was my first time using a soldering iron, some rookie mistakes were made:</br>
 1. Not inverting the UART port connections<br/>
 2. The voltage on the UART controller was set to 3V. After no display of data, the jumper on the UART controller was removed, which had then created another issue. The output in minicom was somewhat readble, but not great. The input was not being parsed correctly either. After hours of troubleshooting, it turns out that the voltage was not stable on the UART controller, interrupting / disrupting transmission. To fix this, a jumper was put on the 5V pins on the UART controller, and fixed the issue.<br/>
+3. Perfectionist tendencies made me re-solder the UART pins many times - still didn't come out too great, but definitely improved.
+ 
 # Conclusion
 
-From the service enumeration, it was obvious that security implementation was lacking.
-Several open ports - do they need to be open? Will look into this.
-No credential set for Telnet. You can submit a '(new password)' to be used as the default credential set for Telnet. If the device is not properly configured, anyone connected to the router can utilise the Telnet service, set a password, and have full control of the device.
+From the service enumeration, it was obvious that security implementation was lacking.<br/>
+Several open ports - do they need to be open? Further investigation needed.<br/>
+No credential set for Telnet. You can submit a '(new password)' to be used as the default credential set for Telnet. If the device is not properly configured, anyone connected to the router can utilise the Telnet service, set a password, and have full control of the device.<br/>
