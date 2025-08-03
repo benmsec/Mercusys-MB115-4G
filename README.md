@@ -35,22 +35,30 @@ Attempt at connecting to the router using iPhone 12 Pro Max:<br/>
 <img width="426" height="655" alt="Image" src="https://github.com/user-attachments/assets/f56ab3ee-ae1f-41ad-bd5d-3b9c3c1426e8" /><br/>
 
 ## Service enumeration
-To connect to the router, an RJ45 (ethernet) cable was employed. Running a simple ```ifconfig``` will show the IP address that the hsot device has received from the DHCP client running on the router. Easy enough to figure out what the router IP address is ```192.168.1.1```. NetDiscover / Nmap could also be used to identify any other machines on the same network.<br/>
+To connect to the router, an RJ45 (ethernet) cable was employed. Running a simple ```ifconfig``` will show the IP address that the hsot device has received from the DHCP client running on the router. Easy enough to figure out what the router IP address is ```192.168.1.1```. NetDiscover / Nmap could also be used to identify any other machines on the same network.<br/><br/>
 <img width="644" height="329" alt="Image" src="https://github.com/user-attachments/assets/7788cd39-c6fd-4d14-bcda-d15dedefe35e" /><br/><br/>
 
 An Nmap scan was conudcted to identify what services are running on the router.<br/>
 ``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```<br/>
+<img width="1893" height="439" alt="Image" src="https://github.com/user-attachments/assets/932e17dc-f0da-4c4e-a326-199197d8517f" /><br/><br/>
 
 As identified in the scan, several ports are open on the router, including:<br/>
 1. Port 23 - Telnet
 2. Port 80 - Router running a web server
 3. Port 1900 - Portable SDK for uPnP devices
 4. Port 7547 - TP-Link remote access?
-5. Port 20001 - Dropbear sshd
+5. Port 20001 - Dropbear sshd<br/>
+
+Port 23 - Telnet<br/>
+From the Nmap scan, Busybox was detected as being used on the Telnet service port, specifically a custom built 'TP-LINK router telnetd'.<br/>
+<img width="345" height="165" alt="Image" src="https://github.com/user-attachments/assets/488543e4-91bb-49b4-9937-b7d7cbaad7d0" /><br/><br/>
+When trying to authenticate using 'Password123!', we receive an extremely limited Telnet connection to the router. This can be investigated further.<br/>
+<img width="345" height="165" alt="Image" src="https://github.com/user-attachments/assets/488543e4-91bb-49b4-9937-b7d7cbaad7d0" /><br/><br/>
+
 
 Port 80 - Web GUI:<br/>
 A web server is running on the router, asking to create a password for the web console. For investigatory purposes, a super-secure password was used - Password123!<br/>
-<img width="1919" height="1042" alt="Image" src="https://github.com/user-attachments/assets/583c29ee-c7fb-4f22-8a1e-927aab893d5c" /><br/>
+<img width="1919" height="1042" alt="Image" src="https://github.com/user-attachments/assets/583c29ee-c7fb-4f22-8a1e-927aab893d5c" /><br/><br/>
 
 Port 20001 - Dropbear SSH
 When trying to SSH to the router, the following error is presented:<br/>
