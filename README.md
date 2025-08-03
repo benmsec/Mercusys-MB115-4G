@@ -36,7 +36,7 @@ Router powered on.<br/><br/>
 
 ## Service enumeration
 An Nmap scan was conudcted to identify what services are running on the router.<br/>
-``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```
+``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```<br/>
 <img width="644" height="329" alt="Image" src="https://github.com/user-attachments/assets/7788cd39-c6fd-4d14-bcda-d15dedefe35e" /><br/>
 As identified in the scan, several ports are open on the router, including:<br/>
 1. Port 23 - Telnet
