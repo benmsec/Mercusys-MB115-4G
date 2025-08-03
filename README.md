@@ -113,8 +113,10 @@ A card was used to open the body of the router, revealing the internals of the r
 <img width="1230" height="917" alt="Image" src="https://github.com/user-attachments/assets/84fb7ff4-f1bc-4b20-8f5d-f0715e2b10d9" /><br/>
 
 ## Identifying the UART connectors
-<img width="682" height="908" alt="Image" src="https://github.com/user-attachments/assets/a8504a93-88c4-4f75-8462-87024e893927" /><br/><br/>
-<img width="687" height="903" alt="Image" src="https://github.com/user-attachments/assets/91b6cb5d-6fe3-4938-93e8-d16b4b27e61a" /><br/><br/>
+To identify each UART connector, a multimeter is employed. We can set it to the following to conduct a continuity test to identify the ground. The SIM card casing was used for the multimeter ground.<br/><br/>
+<img width="682" height="908" alt="Image" src="https://github.com/user-attachments/assets/a8504a93-88c4-4f75-8462-87024e893927" /><br/>
+
+<img width="687" height="903" alt="Image" src="https://github.com/user-attachments/assets/91b6cb5d-6fe3-4938-93e8-d16b4b27e61a" /><br/>
 
 Measure continuity to find Ground<br/>
 GND - Will hear a beeping noise.<br/>
@@ -123,7 +125,7 @@ TX - Voltage should be fluctuating.<br/>
 PWR - Expect around 3.3V when device is plugged in.<br/>
 Full duplex UART needs a minimum of 3 contacts, TX, RX, and GND.<br/>
 
-If anyone ever follows this as a guide, don't make the rookie mistake that I did and connect RX to RX and TX to TX as you won't receive an output. The roles are inversed when connecting to UART reader.
+If anyone follows this as a guide, don't make the rookie mistake that I did and connect RX to RX and TX to TX as you won't receive an output. The connections are inverted when connecting to the UART controller.
 
 <img width="1219" height="911" alt="Image" src="https://github.com/user-attachments/assets/41362e61-3f7b-4052-82d9-74df6f239480" /><br/><br/>
 
