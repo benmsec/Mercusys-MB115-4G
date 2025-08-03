@@ -24,6 +24,15 @@ The router consists of the following components:
 
 # Mercusys MB115-4G
 ## Brand new product
+![Image](https://github.com/user-attachments/assets/06cf097b-bf58-4fa4-b214-a03c4ced21c3)
+
+![Image](https://github.com/user-attachments/assets/45b4a05a-528e-4c2e-994b-5a232f79900c)
+
+![Image](https://github.com/user-attachments/assets/b3fa7a08-16af-4e70-8c0e-01fd35d46fca)
+
+![Image](https://github.com/user-attachments/assets/eb528980-f930-4f35-9088-c4780d70c7d1)
+
+![Image](https://github.com/user-attachments/assets/b611401b-e3eb-4608-ab31-8dfa3f5a1e3f)
 
 ## Service enumeration
 
@@ -63,18 +72,49 @@ Once identified, hashcat was utilised to crack the passwod, using the common wor
 <img width="1055" height="660" alt="Image" src="https://github.com/user-attachments/assets/1bfbf5bd-ec19-4024-b38b-0fdf11684a3e" />
 
 The hash was cracked and the credentials are
-``` admin ```
+``` admin ```<br/>
 ``` 1234 ```
 
 This seems to be a common default credential set from TP-Link (references to TP-Link on product box and internal directories.
 
 ## Disassembling the router
 
+![Image](https://github.com/user-attachments/assets/75581df3-02f9-4a70-8b1e-9533aa746c7f)
+
+![Image](https://github.com/user-attachments/assets/29744bc5-d481-4a03-809d-a7d354aebc81)
+
+
 ## Identifying the UART connectors
+![Image](https://github.com/user-attachments/assets/c8a2f953-64bd-4753-8fb6-c7c9dad342bb)
+![Image](https://github.com/user-attachments/assets/030ff52a-d855-4ab9-b98a-a2e75c9e3a90)
+
+Measure continuity to find Ground<br/>
+GND - Will hear a beeping noise.<br/>
+RX - Should have a voltage reading of near 0.<br/>
+TX - Voltage should be fluctuating.<br/>
+PWR - Expect around 3.3V when device is plugged in.<br/>
+Full duplex UART needs a minimum of 3 contacts, TX, RX, and GND.<br/>
+
+If anyone ever follows this as a guide, don't make the rookie mistake that I did and connect RX to RX and TX to TX as you won't receive an output. The roles are inversed when connecting to UART reader.
+
+![Image](https://github.com/user-attachments/assets/696c2871-b619-46b6-9fca-1a3efab870e2)
 
 ## Soldering to UART
+As you can see, definitely not an expert in soldering. Managed to solder the pins and they were _relatively_ robust <br/>
+![Image](https://github.com/user-attachments/assets/ef26ffc6-f11e-430f-969d-43625578851b)
 
-## 
+## Reading the data
+In comes Minicom (https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) which is a serial communication tool. You could also use screen.
+Doing some research online, and watching Andrew Bellini's DefCon talk (https://www.youtube.com/watch?v=YPcOwKtRuDQ&t - very informative by the way), we run into something called UART baud rates.<br/>
+Just think of baud rates as the speed of communication in UART, essentially how many bits are sent per second between devices. Without specifying the correct baud rate, we're not going to see any useful data.<br/><br/>
+
+A great analogy of this is having a conversation between two people. Baud rate is how fast they talk. If they talk too fast, words get jumbled up.<br/>
+
+```minicom -s```<br/>
+Select 'Serial port setup' and configure it to be the right device and correct baud rate.<br/>
+The most common baud rate for IoT devices is 115200. Others could be 9600, 57600, 38400, and 74880. Without a logic analyser, it's a guessing game. For this project, a logic analyser wasn't utilised.<br/>
+Set the serial device to your UART port (mine was /dev/ttyUSB0).<br/>
+Or just do ``` minicom -b 115200 -D /dev/ttyUSB0 ``` and it should work.
 
 ## Troubleshooting issues
 
