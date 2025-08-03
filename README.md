@@ -23,8 +23,8 @@ The router consists of the following components:
 | RJ45 (additional)          | Service enumeration on the device                                       |
 
 # Mercusys MB115-4G
-## Brand new product
-The router itself:<br/>
+## Brand new in box
+The router itself:<br/><br/>
 <img width="666" height="636" alt="Image" src="https://github.com/user-attachments/assets/947c8402-2443-4f2b-97de-15f3d9165906" /><br/><br/>
 <img width="699" height="534" alt="Image" src="https://github.com/user-attachments/assets/df91d64f-73dd-4f33-8152-61b5bd4c7fb0" /><br/><br/>
 <img width="694" height="881" alt="Image" src="https://github.com/user-attachments/assets/df011122-16f3-461e-b2ba-dcc6ae234405" /><br/><br/>
