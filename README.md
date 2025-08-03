@@ -78,14 +78,14 @@ The latest firmware for the router can be downloaded from the Official Mercusys 
 
 ## Extracting firmware
 Once the firmware was downloaded, it just need to be unpacked.
-``` unzip <filename>.zip ```
+``` unzip <filename>.zip ```<br/>
 <img width="1148" height="259" alt="Image" src="https://github.com/user-attachments/assets/99460d6d-ce3d-4023-9d8f-2c5b74dda682" />
 
-An issue arose when trying to extract the file system from the binary file. To resolve the issue, append:```-run-as=root```.<br/>
+An issue arose when trying to extract the file system from the binary file. To resolve the issue, append:```-run-as=root```.<br/><br/>
 <img width="1898" height="722" alt="Image" src="https://github.com/user-attachments/assets/90b15b7c-b6ae-4768-b8f2-3ceec28116d5" /><br/>
 Fortunately, the firmware was not encrypted. To test for this, use ```binwalk -E <firmware file>```.<br/>
 
-Accessing the file system, squash-fs (file system) was notable. Upon accessing the fs, there were a couple of files of interest: passwd and passwd.bak.<br/>
+Accessing the file system, squash-fs (file system) was notable. Upon accessing the fs, there were a couple of files of interest: passwd and passwd.bak.<br/><br/>
 <img width="1832" height="636" alt="Image" src="https://github.com/user-attachments/assets/6305adfb-8018-447d-8fee-7313ca70e282" /><br/>
 Unsure why the admin hash is in a backup file - maybe something that the devs had forgotten about? We'll never know.
 
@@ -149,10 +149,10 @@ Or just do ``` minicom -b 115200 -D /dev/ttyUSB0 ```.<br/>
 
 <img width="346" height="194" alt="Image" src="https://github.com/user-attachments/assets/e12255fe-6771-445c-b760-83fdbfed4d55" /><br/>
 
-At this point, the program is waiting to receive transmission from UART. Powering on the router will show the following:<br/>
+At this point, the program is waiting to receive transmission from UART. Powering on the router will show the following:<br/><br/>
 <img width="1006" height="956" alt="Image" src="https://github.com/user-attachments/assets/43e7e013-01b6-4085-8e14-0ce06b24b923" /><br/>
 
-Enter in the credentials that were discovered previously. This grants root access to the router.<br/>
+Enter in the credentials that were discovered previously. This grants root access to the router.<br/><br/>
 <img width="692" height="533" alt="Image" src="https://github.com/user-attachments/assets/059afcf9-4710-4058-b479-4d092f682f76" /><br/>
 Note: 'SIM Response Error!' is present as there is no SIM card inserted into the router.<br/>
 
