@@ -24,15 +24,15 @@ The router consists of the following components:
 
 # Mercusys MB115-4G
 ## Brand new product
-![Image](https://github.com/user-attachments/assets/06cf097b-bf58-4fa4-b214-a03c4ced21c3)
+Body of router:<br/>
+<img width="666" height="636" alt="Image" src="https://github.com/user-attachments/assets/947c8402-2443-4f2b-97de-15f3d9165906" /><br/><br/>
+<img width="699" height="534" alt="Image" src="https://github.com/user-attachments/assets/df91d64f-73dd-4f33-8152-61b5bd4c7fb0" /><br/><br/>
+<img width="694" height="881" alt="Image" src="https://github.com/user-attachments/assets/df011122-16f3-461e-b2ba-dcc6ae234405" /><br/><br/>
+Router powered on.<br/><br/>
+<img width="701" height="872" alt="Image" src="https://github.com/user-attachments/assets/9479689f-05f8-4e1f-9d22-98d7235e9f57" /><br/>
 
-![Image](https://github.com/user-attachments/assets/45b4a05a-528e-4c2e-994b-5a232f79900c)
-
-![Image](https://github.com/user-attachments/assets/b3fa7a08-16af-4e70-8c0e-01fd35d46fca)
-
-![Image](https://github.com/user-attachments/assets/eb528980-f930-4f35-9088-c4780d70c7d1)
-
-![Image](https://github.com/user-attachments/assets/b611401b-e3eb-4608-ab31-8dfa3f5a1e3f)
+<br/>Attempt at connecting to the router using iPhone 12 Pro Max:<br/><br/>
+<img width="426" height="655" alt="Image" src="https://github.com/user-attachments/assets/f56ab3ee-ae1f-41ad-bd5d-3b9c3c1426e8" /><br/>
 
 ## Service enumeration
 
@@ -79,14 +79,13 @@ This seems to be a common default credential set from TP-Link (references to TP-
 
 ## Disassembling the router
 
-![Image](https://github.com/user-attachments/assets/75581df3-02f9-4a70-8b1e-9533aa746c7f)
+<img width="698" height="869" alt="Image" src="https://github.com/user-attachments/assets/4aae7b85-8b19-4192-a80e-ef56bff0dce0" /><br/><br/>
 
-![Image](https://github.com/user-attachments/assets/29744bc5-d481-4a03-809d-a7d354aebc81)
-
+<img width="1230" height="917" alt="Image" src="https://github.com/user-attachments/assets/84fb7ff4-f1bc-4b20-8f5d-f0715e2b10d9" /><br/><br/>
 
 ## Identifying the UART connectors
-![Image](https://github.com/user-attachments/assets/c8a2f953-64bd-4753-8fb6-c7c9dad342bb)
-![Image](https://github.com/user-attachments/assets/030ff52a-d855-4ab9-b98a-a2e75c9e3a90)
+<img width="682" height="908" alt="Image" src="https://github.com/user-attachments/assets/a8504a93-88c4-4f75-8462-87024e893927" /><br/><br/>
+<img width="687" height="903" alt="Image" src="https://github.com/user-attachments/assets/91b6cb5d-6fe3-4938-93e8-d16b4b27e61a" /><br/><br/>
 
 Measure continuity to find Ground<br/>
 GND - Will hear a beeping noise.<br/>
@@ -97,11 +96,11 @@ Full duplex UART needs a minimum of 3 contacts, TX, RX, and GND.<br/>
 
 If anyone ever follows this as a guide, don't make the rookie mistake that I did and connect RX to RX and TX to TX as you won't receive an output. The roles are inversed when connecting to UART reader.
 
-![Image](https://github.com/user-attachments/assets/696c2871-b619-46b6-9fca-1a3efab870e2)
+<img width="1219" height="911" alt="Image" src="https://github.com/user-attachments/assets/41362e61-3f7b-4052-82d9-74df6f239480" /><br/><br/>
 
 ## Soldering to UART
 As you can see, definitely not an expert in soldering. Managed to solder the pins and they were _relatively_ robust <br/>
-![Image](https://github.com/user-attachments/assets/ef26ffc6-f11e-430f-969d-43625578851b)
+<img width="689" height="909" alt="Image" src="https://github.com/user-attachments/assets/852054c4-0734-406e-8fd4-c44268d0bd83" /><br/><br/>
 
 ## Reading the data
 In comes Minicom (https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) which is a serial communication tool. You could also use screen.
