@@ -116,6 +116,14 @@ The most common baud rate for IoT devices is 115200. Others could be 9600, 57600
 Set the serial device to your UART port (mine was /dev/ttyUSB0).<br/>
 Or just do ``` minicom -b 115200 -D /dev/ttyUSB0 ```.<br/>
 
+<img width="346" height="194" alt="Image" src="https://github.com/user-attachments/assets/e12255fe-6771-445c-b760-83fdbfed4d55" /><br/>
+
+At this point, the program is waiting to receive transmission from UART. Powering on the router will show the following:<br/>
+<img width="1006" height="956" alt="Image" src="https://github.com/user-attachments/assets/43e7e013-01b6-4085-8e14-0ce06b24b923" /><br/>
+
+Enter in the credentials that were discovered previously. This grants root access to the router.
+<img width="692" height="533" alt="Image" src="https://github.com/user-attachments/assets/059afcf9-4710-4058-b479-4d092f682f76" /><br/>
+Note: 'SIM Response Error!' is present as there is no SIM card inserted into the router.<br/>
 
 ## Troubleshooting issues
 
