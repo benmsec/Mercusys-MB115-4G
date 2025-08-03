@@ -39,7 +39,7 @@ To connect to the router, an RJ45 (ethernet) cable was employed. Running a simpl
 <img width="644" height="329" alt="Image" src="https://github.com/user-attachments/assets/7788cd39-c6fd-4d14-bcda-d15dedefe35e" /><br/><br/>
 
 An Nmap scan was conudcted to identify what services are running on the router.<br/>
-``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```<br/>
+``` nmap -sV -p- 192.168.1.1 -vv -oN <filename.txt> ```<br/><br/>
 <img width="1893" height="439" alt="Image" src="https://github.com/user-attachments/assets/932e17dc-f0da-4c4e-a326-199197d8517f" /><br/><br/>
 
 As identified in the scan, several ports are open on the router, including:<br/>
@@ -53,7 +53,7 @@ Port 23 - Telnet<br/>
 From the Nmap scan, Busybox was detected as being used on the Telnet service port, specifically a custom built 'TP-LINK router telnetd'.<br/>
 <img width="345" height="165" alt="Image" src="https://github.com/user-attachments/assets/488543e4-91bb-49b4-9937-b7d7cbaad7d0" /><br/><br/>
 When trying to authenticate using 'Password123!', we receive an extremely limited Telnet connection to the router. This can be investigated further.<br/>
-<img width="345" height="165" alt="Image" src="https://github.com/user-attachments/assets/488543e4-91bb-49b4-9937-b7d7cbaad7d0" /><br/><br/>
+<img width="518" height="389" alt="Image" src="https://github.com/user-attachments/assets/7555f55c-8454-4f5b-b0f0-45dd867bba5c" /><br/><br/>
 
 
 Port 80 - Web GUI:<br/>
