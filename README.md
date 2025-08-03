@@ -107,10 +107,10 @@ The hash was cracked and the credentials are
 This seems to be a common default credential set from TP-Link (references to TP-Link on product box and internal directories.
 
 ## Disassembling the router
-The two screws on the back hold the top part of the enclosure (black piece) on.<br/>
+The two screws on the back hold the top part of the enclosure (black piece) on.<br/><br/>
 <img width="698" height="869" alt="Image" src="https://github.com/user-attachments/assets/4aae7b85-8b19-4192-a80e-ef56bff0dce0" /><br/>
 
-A card was used to open the body of the router, revealing the internals of the router.<br/>
+A card was used to open the body of the router, revealing the internals of the router.<br/><br/>
 <img width="1230" height="917" alt="Image" src="https://github.com/user-attachments/assets/84fb7ff4-f1bc-4b20-8f5d-f0715e2b10d9" /><br/>
 
 ## Identifying the UART connectors
@@ -131,7 +131,7 @@ If anyone follows this as a guide, don't make the rookie mistake that I did and 
 <img width="1219" height="911" alt="Image" src="https://github.com/user-attachments/assets/41362e61-3f7b-4052-82d9-74df6f239480" /><br/>
 
 ## Soldering to UART
-As you can see, definitely not an expert in soldering. Managed to solder the pins and they were _relatively_ robust.<br/>
+As you can see, definitely not an expert in soldering. Managed to solder the pins and they were _relatively_ robust.<br/><br/>
 <img width="689" height="909" alt="Image" src="https://github.com/user-attachments/assets/852054c4-0734-406e-8fd4-c44268d0bd83" /><br/>
 
 ## Reading the data
