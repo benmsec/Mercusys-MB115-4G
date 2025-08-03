@@ -66,13 +66,13 @@ When trying to SSH to the router, the following error is presented:<br/><br/>
 This conveys that the SSH that the router is offering is using older algorithms (ssh-rsa and ssh-dss). For security purposes, the later SSH clients refusre older algorithms by default. This is also a pretty common adversary technique called downgrade attack.<br/>
 To overcome this, specify the following:<br/>
 ```ssh -p 20001 -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa admin@192.168.1.1``` or ssh-dss.<br/>
-Regardless, this didn't work, with the right password (the password is the one that was created when accessing the admin portal on Port 80):<br/>
+Regardless, this didn't work, with the right password (the password is the one that was created when accessing the admin portal on Port 80):<br/><br/>
 <img width="794" height="126" alt="Image" src="https://github.com/user-attachments/assets/8a2f3154-4965-40f6-a991-6472331182a3" /><br/>
 
 Although there are likely security concerns that can be taken advantage of on this router, the main focus of this project is to try to get a shell from UART, or potentially dumping the firmware from the router itself.
 
 ## Identifying firmware from vendor's website (easiest route)
-
+The latest firmware for the router can be downloaded from the Official Mercusys website.<br/><br/>
 <img width="1296" height="975" alt="Image" src="https://github.com/user-attachments/assets/a965a93f-b336-4eb4-963f-de0c9aa8040d" />
 
 
@@ -81,11 +81,12 @@ Once the firmware was downloaded, it just need to be unpacked.
 ``` unzip <filename>.zip ```
 <img width="1148" height="259" alt="Image" src="https://github.com/user-attachments/assets/99460d6d-ce3d-4023-9d8f-2c5b74dda682" />
 
-I experienced a couple of issues when trying to extract the filesystem from the binary file. In my case, I appended ```-run-as=root```.
-<img width="1898" height="722" alt="Image" src="https://github.com/user-attachments/assets/90b15b7c-b6ae-4768-b8f2-3ceec28116d5" />
+An issue arose when trying to extract the file system from the binary file. To resolve the issue, append:```-run-as=root```.<br/>
+<img width="1898" height="722" alt="Image" src="https://github.com/user-attachments/assets/90b15b7c-b6ae-4768-b8f2-3ceec28116d5" /><br/>
+Fortunately, the firmware was not encrypted. To test for this, use ```binwalk -E <firmware file>```.<br/>
 
-Accessing the file system, squash-fs (file system) was notable. Upon accessing the fs, there were a couple of files of interest: passwd and passwd.bak.
-<img width="1832" height="636" alt="Image" src="https://github.com/user-attachments/assets/6305adfb-8018-447d-8fee-7313ca70e282" />
+Accessing the file system, squash-fs (file system) was notable. Upon accessing the fs, there were a couple of files of interest: passwd and passwd.bak.<br/>
+<img width="1832" height="636" alt="Image" src="https://github.com/user-attachments/assets/6305adfb-8018-447d-8fee-7313ca70e282" /><br/>
 Unsure why the admin hash is in a backup file - maybe something that the devs had forgotten about? We'll never know.
 
 ## Password cracking
