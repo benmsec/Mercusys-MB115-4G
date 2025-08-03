@@ -78,10 +78,11 @@ The hash was cracked and the credentials are
 This seems to be a common default credential set from TP-Link (references to TP-Link on product box and internal directories.
 
 ## Disassembling the router
+The two screws on the back hold the top part of the enclosure (black piece) on.
+<img width="698" height="869" alt="Image" src="https://github.com/user-attachments/assets/4aae7b85-8b19-4192-a80e-ef56bff0dce0" /><br/>
 
-<img width="698" height="869" alt="Image" src="https://github.com/user-attachments/assets/4aae7b85-8b19-4192-a80e-ef56bff0dce0" /><br/><br/>
-
-<img width="1230" height="917" alt="Image" src="https://github.com/user-attachments/assets/84fb7ff4-f1bc-4b20-8f5d-f0715e2b10d9" /><br/><br/>
+A card was used to open the body of the router, revealing the internals of the router.
+<img width="1230" height="917" alt="Image" src="https://github.com/user-attachments/assets/84fb7ff4-f1bc-4b20-8f5d-f0715e2b10d9" /><br/>
 
 ## Identifying the UART connectors
 <img width="682" height="908" alt="Image" src="https://github.com/user-attachments/assets/a8504a93-88c4-4f75-8462-87024e893927" /><br/><br/>
@@ -103,13 +104,13 @@ As you can see, definitely not an expert in soldering. Managed to solder the pin
 <img width="689" height="909" alt="Image" src="https://github.com/user-attachments/assets/852054c4-0734-406e-8fd4-c44268d0bd83" /><br/><br/>
 
 ## Reading the data
-In comes Minicom (https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) which is a serial communication tool. You could also use screen.
+In comes Minicom (https://wiki.emacinc.com/wiki/Getting_Started_With_Minicom) which is a serial communication tool. You could also use screen.<br/>
 Doing some research online, and watching Andrew Bellini's DefCon talk (https://www.youtube.com/watch?v=YPcOwKtRuDQ&t - very informative by the way), we run into something called UART baud rates.<br/>
 Just think of baud rates as the speed of communication in UART, essentially how many bits are sent per second between devices. Without specifying the correct baud rate, we're not going to see any useful data.<br/><br/>
 
-A great analogy of this is having a conversation between two people. Baud rate is how fast they talk. If they talk too fast, words get jumbled up.<br/>
+A great analogy of this is having a conversation between two people. Baud rate is how fast they talk. If they talk too fast, words get jumbled up, so the pace has to be agreed.<br/>
 
-```minicom -s```<br/>
+```minicom -s``` to enter the setup of minicom<br/>
 Select 'Serial port setup' and configure it to be the right device and correct baud rate.<br/>
 The most common baud rate for IoT devices is 115200. Others could be 9600, 57600, 38400, and 74880. Without a logic analyser, it's a guessing game. For this project, a logic analyser wasn't utilised.<br/>
 Set the serial device to your UART port (mine was /dev/ttyUSB0).<br/>
@@ -120,12 +121,14 @@ Or just do ``` minicom -b 115200 -D /dev/ttyUSB0 ```.<br/>
 At this point, the program is waiting to receive transmission from UART. Powering on the router will show the following:<br/>
 <img width="1006" height="956" alt="Image" src="https://github.com/user-attachments/assets/43e7e013-01b6-4085-8e14-0ce06b24b923" /><br/>
 
-Enter in the credentials that were discovered previously. This grants root access to the router.
+Enter in the credentials that were discovered previously. This grants root access to the router.<br/>
 <img width="692" height="533" alt="Image" src="https://github.com/user-attachments/assets/059afcf9-4710-4058-b479-4d092f682f76" /><br/>
 Note: 'SIM Response Error!' is present as there is no SIM card inserted into the router.<br/>
 
 ## Troubleshooting issues
-
+As this was my first time doing a reverse engineering project, some rookie mistakes were made:</br>
+1. Not inverting the UART port connections<br/>
+2. The voltage on the UART controller was set to 3V. After no display of data, the jumper on the UART controller was removed, which had then created another issue. The output in minicom was somewhat readble, but not great. The input was not being parsed correctly either. After hours of troubleshooting, it turns out that the voltage was not stable on the UART controller, interrupting / disrupting transmission. To fix this, a jumper was put on the 5V pins on the UART controller, and fixed the issue.<br/>
 # Conclusion
 
 From the service enumeration, it was obvious that security implementation was lacking.
