@@ -114,7 +114,8 @@ A great analogy of this is having a conversation between two people. Baud rate i
 Select 'Serial port setup' and configure it to be the right device and correct baud rate.<br/>
 The most common baud rate for IoT devices is 115200. Others could be 9600, 57600, 38400, and 74880. Without a logic analyser, it's a guessing game. For this project, a logic analyser wasn't utilised.<br/>
 Set the serial device to your UART port (mine was /dev/ttyUSB0).<br/>
-Or just do ``` minicom -b 115200 -D /dev/ttyUSB0 ``` and it should work.
+Or just do ``` minicom -b 115200 -D /dev/ttyUSB0 ```.<br/>
+
 
 ## Troubleshooting issues
 
