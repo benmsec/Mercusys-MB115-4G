@@ -156,11 +156,83 @@ Enter in the credentials that were discovered previously. This grants root acces
 <img width="692" height="533" alt="Image" src="https://github.com/user-attachments/assets/059afcf9-4710-4058-b479-4d092f682f76" /><br/>
 Note: 'SIM Response Error!' is present as there is no SIM card inserted into the router.<br/>
 
+## Dumping the firmware
+To dump firmware, it's necessary to identify what part of the flash memory contains what.<br/>
+```cat /proc/mtd``` - conveys how the flash memory is divided up, device number, and size.<br/><br/>
+
+<img width="383" height="210" alt="Image" src="https://github.com/user-attachments/assets/9f42989a-704c-4a09-a595-680171ddedb1" /><br/>
+
+~ # cat proc/mtd<br/>
+dev:    size   erasesize  name<br/>
+mtd0: 00020000 00010000 "boot"<br/>
+mtd1: 00130000 00010000 "kernel"<br/>
+mtd2: 00560000 00010000 "rootfs"<br/>
+mtd3: 00010000 00010000 "ispconfig"<br/>
+mtd4: 00010000 00010000 "config"<br/>
+mtd5: 00010000 00010000 "configbak"<br/>
+mtd6: 00010000 00010000 "romfile"<br/>
+mtd7: 00010000 00010000 "radio"<br/>
+mtd8: 00100000 00010000 "userdata"<br/>
+
+Unfortunately, we don't have dd (shell tool for manipulating file data) on the router, but we can ```cat``` out the files.<br/>
+Lets cat out the following rootfs and kernel.<br/><br/>
+
+```cat /dev/mtd1 /tmp/kernel.bin```<br/>
+```cat /dev/mtd2 /tmp/rootfs.bin```<br/><br/>
+
+Combine the two binaries: ```cat kernel.bin rootfs.bin > firmware_combined.bin```<br/><br/>
+
+Unfortunately, there is no netcat, wget, python etc within the router's firmware.<br/>
+When enumerating Telnet earlier on, Busybox was present. When entering ```busybox```, we receive a list of commands that we can use.<br/><br/>
+
+<img width="671" height="462" alt="Image" src="https://github.com/user-attachments/assets/b30afa0e-74a9-4ceb-967a-4da69b83b766" /><br/><br/>
+
+It looks like ```tftp``` can be used (trivial file transfer protocol) - Essentially, it's a lightweight version of the full fat FTP protocol.<br/><br/>
+
+Instructions to set up a TFTP server on your local device / attacking machine:<br/><br/>
+
+```apt install tftpd-hpa```<br/>
+```sudo mkdir -p /var/lib/tftpboot``` - this is where the files being uploaded / downloaded will reside.<br/>
+```sudo chmod -R 777 /var/lib/tftpboot``` - this is also needed otherwise default permissions will not allow clients to download from the tftp server.<br/><br/>
+
+Further configuration is also needed for /etc/default/tftpd-hpa<br/>
+TFTP_USERNAME="tftp"<br/>
+TFTP_DIRECTORY="/var/lib/tftpboot"<br/>
+TFTP_ADDRESS="0.0.0.0:69"<br/>
+TFTP_OPTIONS="--secure"<br/><br/>
+
+Ensure that the TFTP_DIRECTORY is set to /var/lib/tftpboot as this is where files will need to be kept. Permissions have been changed in this directory so that clients can ```get``` and ```put``` files.<br/><br/>
+
+The last step is to restart and enable the TFTP server.<br/>
+```sudo systemctl restart tftpd-hpa```<br/>
+```sudo systemctl enable tftpd-hpa```<br/><br/>
+
+To test whether the service is running and listening:<br/>
+```sudo netstat -anu | grep 69``` - TFTP runs over UDP/69.<br/><br/>
+
+Connect to the router via RJ45 / Wi-Fi.<br/>
+Check ```ifconfig``` to see what your host IP is.<br/><br/>
+
+Going back to the router's shell, use the following:<br/>
+```tftp -p -l /tmp/firmware_combined.bin 192.168.1.101```.<br/><br/>
+<img width="951" height="179" alt="Image" src="https://github.com/user-attachments/assets/dbfbde81-fa2a-443d-95b0-934e92a855d9" /><br/><br/>
+
+After doing that, it worked without any issue. Successfully 'put' the firmware_combined.bin file on the TFTP server (hosted on local machine). This was the only effective way of dumping the firmware in this scenario.<br/>
+
+<img width="557" height="515" alt="Image" src="https://github.com/user-attachments/assets/58ee40fb-8e51-4136-8fb8-cfb68de94f9d" /><br/>
+File size has increased from previous ```ls``` command, indicating that the transfer was successful.<br/>
+It is worth noting that if you have any errors when trying to upload the file to the TFTP server, it'll be due to permissions. Use ```sudo chmod -R 777 /var/lib/tftproot``` and it should work. This gives read, write, and execute permissions to everyone, not the most secure way.<br/>
+
+## Extracting the dumped firmware
+After obtaining the firmware, binwalk was employed once again. The file system was successfully dumped.<br/><br/>
+<img width="1902" height="663" alt="Image" src="https://github.com/user-attachments/assets/6a328e93-c8ce-462c-803f-5f759692eb99" /><br/><br/>
+
 ## Troubleshooting, issues, and learning outcomes
 As this was my first time using a soldering iron, some rookie mistakes were made:</br>
 1. Not inverting the UART port connections<br/>
 2. The voltage on the UART controller was set to 3V. After no display of data, the jumper on the UART controller was removed, which had then created another issue. The output in minicom was somewhat readble, but not great. The input was not being parsed correctly either. After hours of troubleshooting, it turns out that the voltage was not stable on the UART controller, interrupting / disrupting transmission. To fix this, a jumper was put on the 5V pins on the UART controller, and fixed the issue.<br/>
 3. Perfectionist tendencies made me re-solder the UART pins many times - still didn't come out too great, but definitely improved.
+4. After a bit of research (i.e. Googling around), when dumping the firmware using TFTP, you need to have an existing file created in /var/lib/tftproot to be able to 'put' files in there. For this example, firmware_combined.bin needed to exist otherwise errors would appear when trying to upload file from router to TFTP server (host machine).
  
 # Conclusion
 
