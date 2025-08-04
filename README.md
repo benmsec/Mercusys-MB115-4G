@@ -1,5 +1,6 @@
 # Mercusys-MB115-4G
-Mercusys MB115-4G
+## Disclaimer<br/>
+_This project is intended solely for educational and research purposes._<br/>
 
 This document provides technical details on the reverse engineering process of the Mercusys MB115-4G router.
 
@@ -73,7 +74,8 @@ Although there are security concerns that can be taken advantage of on this rout
 
 ## Identifying firmware from vendor's website (easiest route)
 The latest firmware for the router can be downloaded from the Official Mercusys website.<br/><br/>
-<img width="1296" height="975" alt="Image" src="https://github.com/user-attachments/assets/a965a93f-b336-4eb4-963f-de0c9aa8040d" />
+<img width="1296" height="975" alt="Image" src="https://github.com/user-attachments/assets/a965a93f-b336-4eb4-963f-de0c9aa8040d" /><br/>
+As seen in the image, the latest version from the vendor's website is: MB115-4G(EU)_V1_1.6.0 Build 241227.<br/>
 
 
 ## Extracting firmware
@@ -227,6 +229,9 @@ It is worth noting that if you have any errors when trying to upload the file to
 After obtaining the firmware, binwalk was employed once again. The file system was successfully dumped.<br/><br/>
 <img width="1902" height="663" alt="Image" src="https://github.com/user-attachments/assets/6a328e93-c8ce-462c-803f-5f759692eb99" /><br/><br/>
 
+The firmware version that was dumped can be identified through the Web GUI, running over Port 80:
+<img width="1188" height="700" alt="Image" src="https://github.com/user-attachments/assets/42063443-d306-420a-ab62-aaa4dd2f9334" /><br/>
+
 ## Troubleshooting, issues, and learning outcomes
 As this was my first time using a soldering iron, some rookie mistakes were made:</br>
 1. Not inverting the UART port connections<br/>
@@ -238,4 +243,6 @@ As this was my first time using a soldering iron, some rookie mistakes were made
 
 From the service enumeration, it was obvious that security implementation was lacking.<br/>
 Several open ports - do they need to be open? Further investigation needed.<br/>
-No credential set for Telnet. You can submit a '(new password)' to be used as the default credential set for Telnet. If the device is not properly configured, anyone connected to the router can utilise the Telnet service, set a password, and have full control of the device.<br/>
+No credential set for Telnet. You can submit a '(new password)' to be used as the default credential set for Telnet. If the device is not properly configured, anyone connected to the router can utilise the Telnet service, set a password, and have full control of the device.<br/><br/>
+
+More to be added.
