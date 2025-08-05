@@ -232,7 +232,7 @@ It is worth noting that if you have any errors when trying to upload the file to
 After obtaining the firmware, binwalk was employed once again. The file system was successfully dumped.<br/><br/>
 <img width="1902" height="663" alt="Image" src="https://github.com/user-attachments/assets/6a328e93-c8ce-462c-803f-5f759692eb99" /><br/>
 
-The firmware version that was dumped can be identified through the Web GUI, running over Port 80:<br/>
+The firmware version that was dumped can be identified through the Web GUI, running over Port 80:<br/><br/>
 <img width="1188" height="700" alt="Image" src="https://github.com/user-attachments/assets/42063443-d306-420a-ab62-aaa4dd2f9334" /><br/>
 
 ## Troubleshooting, issues, and learning outcomes
