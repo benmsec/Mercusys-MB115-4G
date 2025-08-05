@@ -14,6 +14,9 @@ The router consists of the following components:
 | Serial Flash | EEC SH16T01N0       |                                                           |
 | Modem module | QUECTEL EC-200-EL   |                                                           | 
 
+Firmware version on router: 1.7.0.0.9.1 v0001.0 Build 250108 Rel. 38398n<br/>
+Hardware version: MB115-4G v1.0 00000001<br/>
+
 ## Tools used
 | Name                       | Description         |
 | -------------------------- | ------------------- |
@@ -227,9 +230,9 @@ It is worth noting that if you have any errors when trying to upload the file to
 
 ## Extracting the dumped firmware
 After obtaining the firmware, binwalk was employed once again. The file system was successfully dumped.<br/><br/>
-<img width="1902" height="663" alt="Image" src="https://github.com/user-attachments/assets/6a328e93-c8ce-462c-803f-5f759692eb99" /><br/><br/>
+<img width="1902" height="663" alt="Image" src="https://github.com/user-attachments/assets/6a328e93-c8ce-462c-803f-5f759692eb99" /><br/>
 
-The firmware version that was dumped can be identified through the Web GUI, running over Port 80:
+The firmware version that was dumped can be identified through the Web GUI, running over Port 80:<br/>
 <img width="1188" height="700" alt="Image" src="https://github.com/user-attachments/assets/42063443-d306-420a-ab62-aaa4dd2f9334" /><br/>
 
 ## Troubleshooting, issues, and learning outcomes
